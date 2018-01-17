@@ -1,5 +1,4 @@
 const debug = require('debug')('nosaj:helpers:blog');
-const { dateToString } = require('./date');
 const fileOpener  = require('./file-opener');
 const markdownParser = require('./markdown-parser');
 
@@ -9,6 +8,28 @@ module.exports = {
   augmentPosts,
   allPosts,
 };
+
+function dateToString(rawDate) {
+  const date = new Date(rawDate);
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+  // Only return the year when it isn't the current year
+  return date.getFullYear() !== new Date().getFullYear() ?
+    `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}` : 
+    `${date.getDate()} ${months[date.getMonth()]}`;
+}
 
 /**
  * Retrieve all Posts, parsed and sorted
