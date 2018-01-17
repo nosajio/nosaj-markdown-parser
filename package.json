@@ -1,0 +1,25 @@
+{
+  "name": "nosaj-md-parser",
+  "version": "1.0.0",
+  "description": "The markdown parser for nosaj.io. I don't recommend using this in your own project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nosajio/nosaj-markdown-parser.git"
+  },
+  "author": "Jason Howmans <hi@nosaj.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nosajio/nosaj-markdown-parser/issues"
+  },
+  "homepage": "https://github.com/nosajio/nosaj-markdown-parser#readme",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "front-matter": "^2.3.0",
+    "marked": "^0.3.12",
+    "striptags": "^3.1.1"
+  }
+}
