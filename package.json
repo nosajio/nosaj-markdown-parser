@@ -1,6 +1,6 @@
 {
   "name": "nosaj-md-parser",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The markdown parser for nosaj.io. I don't recommend using this in your own project.",
   "main": "index.js",
   "scripts": {
