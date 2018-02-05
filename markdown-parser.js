@@ -14,9 +14,9 @@ function markdownParser() {
   // ✘ "a_random-post-filename"
   const filenameRegex = /(.*)-(\d{4}-\d{1,2}-\d{1,2})(.*)?/g;
   
-  // Markdown plugins
+  // Remarkable plugins
   remarkable
-    // .use()
+    .use( require('./plugins/media-tags') )
     .use( require('./plugins/links-with-target-blank') );
   
   return {
