@@ -16,13 +16,13 @@ title: "Test Post"
 }
 
 test('markdownParser', t => {
-  t.test('filenameValid()', t1 => {
+  t.test('.filenameValid()', t1 => {
     t1.plan(2);
     t1.ok(mdParser.filenameValid(fileStubs.parsable.name), 'Truthy for valid filenames.');
     t1.ok(mdParser.filenameValid(fileStubs.parsable.name), 'Falsey for invalid filenames.');
   });
 
-  t.test('parseFilename()', t2 => {
+  t.test('.parseFilename()', t2 => {
     t2.plan(5);
     const parsable = mdParser.parseFilename(fileStubs.parsable.name);
     t2.ok(('slug' in parsable), 'Returns a slug');
@@ -32,7 +32,7 @@ test('markdownParser', t => {
     t2.throws(() => mdParser.parseFilename(fileStubs.unparsable.name), 'Throws when passed a invalid filename.')
   });
 
-  t.test('parseFile()', t3 => {
+  t.test('.parseFile()', t3 => {
     t3.plan(3);
     const parsable = mdParser.parseFile(fileStubs.parsable.contents);
     t3.ok(('body' in parsable), 'Returns body HTML');
