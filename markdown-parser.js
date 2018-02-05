@@ -13,15 +13,6 @@ function markdownParser() {
   // ✔︎ "how-to-debug-javascript-2015-10-12.md"
   // ✘ "a_random-post-filename"
   const filenameRegex = /(.*)-(\d{4}-\d{1,2}-\d{1,2})(.*)?/g;
-
-  // const lexer = new remarkable.Lexer()
-  // console.log(lexer);
-  
-
-  // Override render methods
-  // const renderer = new remarkable.Renderer();
-  // renderer.link = linksWithTargetBlank;
-
   
   remarkable.use(linksWithTargetBlank)
   
