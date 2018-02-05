@@ -14,7 +14,10 @@ function markdownParser() {
   // ✘ "a_random-post-filename"
   const filenameRegex = /(.*)-(\d{4}-\d{1,2}-\d{1,2})(.*)?/g;
   
-  remarkable.use(linksWithTargetBlank)
+  // Markdown plugins
+  remarkable
+    // .use()
+    .use( require('./plugins/links-with-target-blank') );
   
   return {
     parseFile,
@@ -47,14 +50,5 @@ function markdownParser() {
     const date = new Date(parsed[2]);
 
     return {slug, title, date};
-  }
-}
-
-function linksWithTargetBlank(md, options) {
-  const originalRenderer = md.renderer.rules.link_open;
-  md.renderer.rules.link_open = (...args) => {
-    const anchor = originalRenderer(...args);
-    const anchorWithTarget = anchor.replace('href=', 'target="_blank" href=');
-    return anchorWithTarget
   }
 }
