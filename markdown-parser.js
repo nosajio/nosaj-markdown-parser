@@ -1,7 +1,8 @@
 const debug = require('debug')('nosaj:markdownParser');
 const frontmatter = require('front-matter');
-const marked = require('marked');
+const Remarkable = require('remarkable');
 const striptags = require('striptags');
+const remarkable = new Remarkable();
 
 
 module.exports = markdownParser();
@@ -13,9 +14,16 @@ function markdownParser() {
   // ✘ "a_random-post-filename"
   const filenameRegex = /(.*)-(\d{4}-\d{1,2}-\d{1,2})(.*)?/g;
 
+  // const lexer = new remarkable.Lexer()
+  // console.log(lexer);
+  
+
   // Override render methods
-  const renderer = new marked.Renderer();
-  renderer.link = linksWithTargetBlank;
+  // const renderer = new remarkable.Renderer();
+  // renderer.link = linksWithTargetBlank;
+
+  
+  remarkable.use(linksWithTargetBlank)
   
   return {
     parseFile,
@@ -25,7 +33,7 @@ function markdownParser() {
 
   function parseFile(fileContents) {
     const parsed = frontmatter(fileContents);
-    const bodyHtml = marked(parsed.body, { renderer });
+    const bodyHtml = remarkable.render(parsed.body);
     return Object.assign({}, parsed.attributes, {body: bodyHtml, plain: striptags(bodyHtml)});
   }
 
@@ -51,6 +59,11 @@ function markdownParser() {
   }
 }
 
-function linksWithTargetBlank(href, title, text) {
-  return `<a title="${title}" href="${href}" target="_blank">${text}</a>`;
+function linksWithTargetBlank(md, options) {
+  const originalRenderer = md.renderer.rules.link_open;
+  md.renderer.rules.link_open = (...args) => {
+    const anchor = originalRenderer(...args);
+    const anchorWithTarget = anchor.replace('href=', 'target="_blank" href=');
+    return anchorWithTarget
+  }
 }

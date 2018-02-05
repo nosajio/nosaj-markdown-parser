@@ -20,7 +20,7 @@
     "debug": "^3.1.0",
     "faucet": "0.0.1",
     "front-matter": "^2.3.0",
-    "marked": "^0.3.12",
+    "remarkable": "^1.7.1",
     "striptags": "^3.1.1",
     "tape": "^4.8.0"
   }

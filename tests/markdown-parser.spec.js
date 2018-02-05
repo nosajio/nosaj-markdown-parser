@@ -4,11 +4,12 @@ const mdParser = require('../markdown-parser');
 const fileStubs = {
   parsable: {
     name: 'parsable-filename-2018-01-04.md',
-    contents: `---
+    contents: 
+`---
 title: "Test Post"
 ---
-
-    Just some *markdown* to test [things work](http://nosaj.io) properly.`
+ 
+Just some *markdown* to test [things work](http://nosaj.io) properly.`
   },
   unparsable: {
     name: 'unparsable_filename-01-04.md',
@@ -33,10 +34,11 @@ test('markdownParser', t => {
   });
 
   t.test('.parseFile()', t3 => {
-    t3.plan(3);
+    t3.plan(4);
     const parsable = mdParser.parseFile(fileStubs.parsable.contents);
     t3.ok(('body' in parsable), 'Returns body HTML');
     t3.ok(('plain' in parsable), 'Returns plain text');
     t3.equal(parsable.title, 'Test Post', 'Returns frontmatter title.');
+    t3.ok(parsable.body.includes('target="_blank"'), 'Add\'s target="_blank" to anchors.');
   });
 })
