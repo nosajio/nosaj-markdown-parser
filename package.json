@@ -4,7 +4,7 @@
   "description": "The markdown parser for nosaj.io. I don't recommend using this in your own project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape ./tests/**/**.spec.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "debug": "^3.1.0",
     "front-matter": "^2.3.0",
     "marked": "^0.3.12",
-    "striptags": "^3.1.1"
+    "striptags": "^3.1.1",
+    "tape": "^4.8.0"
   }
 }
