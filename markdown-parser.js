@@ -2,7 +2,6 @@ const debug = require('debug')('nosaj:markdownParser');
 const frontmatter = require('front-matter');
 const Remarkable = require('remarkable');
 const striptags = require('striptags');
-const remarkable = new Remarkable();
 
 
 module.exports = markdownParser();
@@ -13,6 +12,11 @@ function markdownParser() {
   // ✔︎ "how-to-debug-javascript-2015-10-12.md"
   // ✘ "a_random-post-filename"
   const filenameRegex = /(.*)-(\d{4}-\d{1,2}-\d{1,2})(.*)?/g;
+  
+  // Instantiate remarkable
+  const remarkable = new Remarkable({
+    html: true,         // Render HTML inside of markdown
+  });  
   
   // Remarkable plugins
   remarkable
